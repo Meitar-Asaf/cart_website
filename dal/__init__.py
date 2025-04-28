@@ -202,6 +202,4 @@ def login(username):
         if username == i[1]:
             user_info =( i[1], i[2], i[0])
             return user_info
-        if not user_info:
-            raise ValueError("username does not exist")
-        
+    raise Exception("Username does not exist")
