@@ -200,6 +200,8 @@ def select_all_users():
 def login(username):
     for i in select_all_users():
         if username == i[1]:
-            return i[1], i[2], i[0]
-        if not username:
-            raise ValueError("Username does not exist!")
+            user_info =( i[1], i[2], i[0])
+            return user_info
+        if not user_info:
+            raise ValueError("username does not exist")
+        
