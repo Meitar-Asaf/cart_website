@@ -1,0 +1,83 @@
+/* General Styling */
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(180deg, #87CEEB, #FFF8DC);
+    color: #444;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Heading Styling */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FF69B4;
+    text-shadow: 2px 2px #FFD700;
+    margin-bottom: 20px;
+}
+
+/* Product List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #6B8E23;
+}
+
+/* Images */
+img {
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px #aaa;
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+    margin: 10px 0;
+}
+
+/* Form Styling */
+form {
+    margin: 10px 0;
+}
+
+button {
+    background-color: #FFD700;
+    color: #4B0082;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px #aaa;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #FF69B4;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Span Message Styling */
+span {
+    font-size: 1.2rem;
+    color: #B22222;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}

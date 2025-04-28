@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <audio autoplay src="{{ url_for('home_play_song') }}">
+
+    </audio>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <span class="flash-message">{{ message }}</span>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    
+    {% if session.get('username') %}
+    Hello, {{ session['username'] }}!
+    {% else %}
+    Hello, dear guest!
+    <a href="{{ url_for('signup') }}">Sign up here!</a>
+    <br>
+    <a href="{{ url_for('login') }}"> Login </a>
+    {% endif %}
+    <form action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
+        <label for="product">Product name: </label>
+        <input type="text" id="product" name="product">
+
+        <label for="1img">Add image</label>
+        <input type="file" id="1img" name="1img">
+        <button type="submit">Add product</button>
+        <br><br>
+
+    </form>
+    <form action="{{ url_for('search') }}" method="GET">
+        <label for="search">Search product: </label>
+        <input type="text" id="search" name="search" placeholder="Search product here...">
+        <button type="submit" for="search">Search</button>
+
+    </form>
+    <form action="{{ url_for('cart_bp.update_quantity') }}" method="POST">
+        <select name = "products_list_dropdown">
+            {% for product in products %}
+            <option value="{{ product[2] }}">{{ product[2] }}</option>
+            {% endfor %}
+        </select>
+        <label for="quantity">Update: </label>
+        <input type="text" id="quantity" name="quantity"
+            placeholder="Update product here...">
+        <button type="submit" for="update_product_quantity">Update</button>
+    </form>
+    {% if session.get('role_id') == 1 %}
+    <form action="{{ url_for('update_picture_file') }}" method="POST" enctype="multipart/form-data">
+        <label for="update_product_quantity">Product id: </label>
+        <input type="text" id="id" name="id" placeholder="Product id here...">
+        <input type="file" id="updateImage" name="updateImage" placeholder="New image here">
+        <button type="submit">Update</button>
+    </form>
+    {% endif %}
+    <br><br><br>
+    <ul>
+        {% for result in search_results %}
+        <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{url_for('cart_bp.cart')}}">cart </a>
+    {% if session.get('role_id') == 1 %}
+    <a href="{{url_for('admin_change_songs')}}">Change songs </a>
+    {% endif %}
+    <form action="{{ url_for('logout') }}" method="POST">
+        <button type="submit"> logout</button>
+    </form>
+
+
+
+
+
+
+</body>
+
+</html>

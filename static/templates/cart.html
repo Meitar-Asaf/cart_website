@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+    <script src="{{ url_for('static', filename='clients_rest.js') }}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <audio autoplay src="{{ url_for('cart_bp.cart_play_song') }}">
+
+    </audio>
+    <h1>Products: </h1>
+    <ul>
+        {% for product in products %}
+        
+            <li>{{ product [1] }} {{ product[2] }}</li>
+
+            {% if product[4] %}
+                <img src="{{ url_for('cart_bp.get_image', filename=product[4]) }}">
+            {% endif %}
+            <form action="{{ url_for('cart_bp.delete', id = product[0] ) }}" method="POST">
+            <button type="submit">delete</button>
+            </form>
+
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('submit') }}" method=""><button>Home</button></form>
+
+    <br><br>
+    <br><br>
+    {% if delete_message %}
+        <span>{{ delete_message }}</span>
+    {% else %}
+        <form action="{{ url_for('cart_bp.delete_all') }}" method="POST"><button>Delete all products</button></form>
+    {% endif %}
+</body>
+
+</html>

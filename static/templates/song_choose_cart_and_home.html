@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <span class="flash-message">{{ message }}</span>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form method = "post" enctype="multipart/form-data">
+        <label for = "homepage song">Song for homepage: </label>
+        <input type = "file" name = "homepage song">
+        <button type="submit">Change song</button>
+    </form>
+    <form method = "post" enctype="multipart/form-data">
+        <label for = "cart song">Song for cart page: </label>
+        <input type = "file" name = "cart song">
+        <button type="submit">Change song</button>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 - Page Not Found</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='404.css') }}">
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.imgur.com/2bLzj1B.png" alt="Sad Disney Character">
+    <h1>Oops! This page got lost in the magic...</h1>
+    <p>It looks like this page doesn't exist. Maybe it's hiding in a castle somewhere?</p>
+    <a href="/">Take me back home</a>
+  </div>
+
+  <script src="{{ url_for('static', filename='404.js') }}"></script>
+</body>
+</html>
