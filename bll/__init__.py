@@ -64,9 +64,13 @@ def signup_bll(username, password, role_id = None):
         signup(username, new_password)
 
 def login_bll(username, password):
-    role_id,hashed_password, user_id = login(username)
-    if check_password_hash(hashed_password, password):
-        return role_id, user_id
+    login_info = login(username)
+    if login_info:
+        role_id,hashed_password, user_id = login_info
+        if check_password_hash(hashed_password, password):
+            return role_id, user_id
+    
+    raise ValueError("Wrong username or password")
 
 def change_song_bll(page, file):
     filename = str(uuid.uuid4())
