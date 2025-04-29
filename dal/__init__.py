@@ -147,7 +147,7 @@ def update_quantity(quantity=None, product=None, user_id=None):
         cursor = conn.cursor()
         product = product[0].upper() + product[1:].lower()
         cursor.execute(
-            "UPDATE products SET quantity = ? WHERE title = ? AND user_id", (quantity, product, user_id))
+            "UPDATE products SET quantity = ? WHERE title = ? AND user_id = ?", (quantity, product, user_id))
         conn.commit()
 
 
