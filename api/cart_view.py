@@ -7,6 +7,7 @@ cart_bp = Blueprint("cart_bp", __name__, url_prefix= "/cart")
 def cart():
     if is_list_empty_bll(session['user_id']):
         return render_template("cart.html", delete_message="The list is empty")
+    print(session['user_id'])
     products = select_all_bll(session['user_id'])
     if request.method == "GET":
         return render_template("cart.html", products=products),200
@@ -31,7 +32,7 @@ def update_quantity():
     product = request.form.get("products_list_dropdown")
     if quantity and product:
         update_quantity_bll(quantity, product, session['user_id'])
-    return redirect(url_for('submit', products = select_all_bll()))
+    return redirect(url_for('submit'))
 
 @cart_bp.route("/images/<string:filename>")
 def get_image(filename):
