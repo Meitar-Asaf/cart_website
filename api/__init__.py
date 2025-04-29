@@ -35,7 +35,6 @@ def login():
                 session['role_id'] = login_result[0]
                 print(session['role_id'])
                 return redirect(url_for('submit', products = select_all_bll(session['user_id'])))
-            flash("Wrong username or password")
         if not password:
             flash("You didn't enter a password")
         if not username:
@@ -81,7 +80,7 @@ def signup():
 @app.route("/", methods=["POST", "GET"])
 def submit():
     if not session.get("user_id"):
-        abort(404)
+        return redirect(url_for("signup"))
     if request.method == "POST":
         product_name = request.form.get("product")
         print(product_name)
@@ -170,11 +169,11 @@ def page_not_found(error):
         error.description = "Product not in cart"
     return render_template("404.html", error=error)
 print(app.url_map)
-#@app.errorhandler(Exception)
-# def flash_exceptions(e):
-#     flash(str(e))
-#     print(str(e))
-#     if 'user_id' in session:
-#         return redirect(url_for('submit', products=select_all_bll(session['user_id'])))
-#     else:
-#         return redirect(url_for('login'))
+@app.errorhandler(Exception)
+def flash_exceptions(e):
+    flash(str(e))
+    print(str(e))
+    if 'user_id' in session:
+        return redirect(url_for('submit', products=select_all_bll(session['user_id'])))
+    else:
+        return redirect(url_for('login'))
